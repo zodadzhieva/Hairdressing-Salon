@@ -11,5 +11,6 @@ namespace hairdressingSalon.Data
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Action { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hairdressingSalon.Data;
 
-namespace hairdressingSalon.Data.Migrations
+namespace hairdressingSalon.Migrations
 {
     [DbContext(typeof(HairdresserContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    partial class HairdresserContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -229,28 +229,48 @@ namespace hairdressingSalon.Data.Migrations
                     b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Data")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DateApropr")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("HairdresserName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("HairdresserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdClient")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdService")
+                    b.Property<int>("IdHairDresser")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ServiceId")
+                    b.Property<int>("IdService")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("HairdresserId");
+
+                    b.HasIndex("IdService");
 
                     b.ToTable("Appointments");
+                });
+
+            modelBuilder.Entity("hairdressingSalon.Data.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Categ")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("hairdressingSalon.Data.Client", b =>
@@ -305,9 +325,6 @@ namespace hairdressingSalon.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdClient")
                         .HasColumnType("int");
 
@@ -317,14 +334,11 @@ namespace hairdressingSalon.Data.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("IdClient");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("IdProduct");
 
                     b.ToTable("Orders");
                 });
@@ -336,14 +350,14 @@ namespace hairdressingSalon.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Data")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdCategory")
+                        .HasColumnType("int");
 
                     b.Property<string>("Manufacture")
                         .HasColumnType("nvarchar(max)");
@@ -356,6 +370,8 @@ namespace hairdressingSalon.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdCategory");
+
                     b.ToTable("Products");
                 });
 
@@ -366,30 +382,27 @@ namespace hairdressingSalon.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Data")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("category")
+                    b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("data")
-                        .HasColumnType("int");
-
-                    b.Property<string>("description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("photo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("price")
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Services");
                 });
@@ -448,14 +461,22 @@ namespace hairdressingSalon.Data.Migrations
             modelBuilder.Entity("hairdressingSalon.Data.Appointment", b =>
                 {
                     b.HasOne("hairdressingSalon.Data.Client", "Client")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("ClientId");
 
+                    b.HasOne("hairdressingSalon.Data.Hairdresser", "Hairdresser")
+                        .WithMany("Appointments")
+                        .HasForeignKey("HairdresserId");
+
                     b.HasOne("hairdressingSalon.Data.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId");
+                        .WithMany("Appointments")
+                        .HasForeignKey("IdService")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
+
+                    b.Navigation("Hairdresser");
 
                     b.Navigation("Service");
                 });
@@ -463,23 +484,54 @@ namespace hairdressingSalon.Data.Migrations
             modelBuilder.Entity("hairdressingSalon.Data.Order", b =>
                 {
                     b.HasOne("hairdressingSalon.Data.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
+                        .WithMany("Orders")
+                        .HasForeignKey("IdClient")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("hairdressingSalon.Data.Product", "Product")
                         .WithMany("Orders")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("IdProduct")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
 
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("hairdressingSalon.Data.Product", b =>
+                {
+                    b.HasOne("hairdressingSalon.Data.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("IdCategory")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("hairdressingSalon.Data.Service", b =>
                 {
-                    b.HasOne("hairdressingSalon.Data.Service", null)
-                        .WithMany("Services")
-                        .HasForeignKey("ServiceId");
+                    b.HasOne("hairdressingSalon.Data.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("hairdressingSalon.Data.Client", b =>
+                {
+                    b.Navigation("Appointments");
+
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("hairdressingSalon.Data.Hairdresser", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 
             modelBuilder.Entity("hairdressingSalon.Data.Product", b =>
@@ -489,7 +541,7 @@ namespace hairdressingSalon.Data.Migrations
 
             modelBuilder.Entity("hairdressingSalon.Data.Service", b =>
                 {
-                    b.Navigation("Services");
+                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

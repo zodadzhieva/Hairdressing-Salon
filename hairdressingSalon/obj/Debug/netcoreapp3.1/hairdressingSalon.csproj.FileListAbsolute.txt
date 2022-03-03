@@ -20,7 +20,6 @@ C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\bin\Debug\netcoreapp3.
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.csprojAssemblyReference.cache
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.1\staticwebassets\hairdressingSalon.StaticWebAssets.Manifest.cache
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.1\staticwebassets\hairdressingSalon.StaticWebAssets.xml
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.RazorAssemblyInfo.cache
