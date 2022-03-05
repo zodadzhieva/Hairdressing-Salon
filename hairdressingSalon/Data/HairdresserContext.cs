@@ -26,7 +26,7 @@ namespace hairdressingSalon.Data
         public virtual DbSet<Hairdresser> Hairdressers { get; set; }
         public virtual DbSet<Client> Clients{ get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
-
+        public virtual DbSet<Category> Categories { get; set; }
 
     }
 }

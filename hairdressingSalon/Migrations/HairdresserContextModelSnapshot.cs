@@ -270,7 +270,7 @@ namespace hairdressingSalon.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("hairdressingSalon.Data.Client", b =>

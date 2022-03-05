@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\1914\\Desktop\\hairdressingSalon\\hairdressingSalon\\hairdressingSalon.csproj": {}
+    "C:\\Users\\1914\\Desktop\\DI\\Hairdressing-Salon\\hairdressingSalon\\hairdressingSalon.csproj": {}
   },
   "projects": {
-    "C:\\Users\\1914\\Desktop\\hairdressingSalon\\hairdressingSalon\\hairdressingSalon.csproj": {
+    "C:\\Users\\1914\\Desktop\\DI\\Hairdressing-Salon\\hairdressingSalon\\hairdressingSalon.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1914\\Desktop\\hairdressingSalon\\hairdressingSalon\\hairdressingSalon.csproj",
+        "projectUniqueName": "C:\\Users\\1914\\Desktop\\DI\\Hairdressing-Salon\\hairdressingSalon\\hairdressingSalon.csproj",
         "projectName": "hairdressingSalon",
-        "projectPath": "C:\\Users\\1914\\Desktop\\hairdressingSalon\\hairdressingSalon\\hairdressingSalon.csproj",
+        "projectPath": "C:\\Users\\1914\\Desktop\\DI\\Hairdressing-Salon\\hairdressingSalon\\hairdressingSalon.csproj",
         "packagesPath": "C:\\Users\\1914\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\1914\\Desktop\\hairdressingSalon\\hairdressingSalon\\obj\\",
+        "outputPath": "C:\\Users\\1914\\Desktop\\DI\\Hairdressing-Salon\\hairdressingSalon\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\1914\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -64,11 +64,19 @@
               "target": "Package",
               "version": "[5.0.14, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.21, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.14, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
             }
           },
           "imports": [
