@@ -88,3 +88,4 @@ C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.Views.pdb
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.dll
 C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.pdb
+C:\Users\1914\Desktop\hairdressingSalon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.csprojAssemblyReference.cache

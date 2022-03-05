@@ -8,10 +8,10 @@ namespace hairdressingSalon.Data
     public class Category
     {
         public int Id { get; set; }
-        public string Type { get; set; }
-
-        public string Categ { get; set; }
-
-
+        public string Name { get; set; }
+        public string ServiceId { get; set; }
+        public ICollection<Service> Services { get; set; }
+        public ICollection<Order> Orders { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

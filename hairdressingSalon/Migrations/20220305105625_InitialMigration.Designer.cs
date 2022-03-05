@@ -10,7 +10,7 @@ using hairdressingSalon.Data;
 namespace hairdressingSalon.Migrations
 {
     [DbContext(typeof(HairdresserContext))]
-    [Migration("20220303115046_InitialMigration")]
+    [Migration("20220305105625_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -264,10 +264,10 @@ namespace hairdressingSalon.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Categ")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("ServiceId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -306,13 +306,13 @@ namespace hairdressingSalon.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Speciality")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -327,16 +327,21 @@ namespace hairdressingSalon.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdClient")
                         .HasColumnType("int");
 
                     b.Property<int>("IdProduct")
                         .HasColumnType("int");
 
-                    b.Property<int>("Number")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("IdClient");
 
@@ -485,6 +490,10 @@ namespace hairdressingSalon.Migrations
 
             modelBuilder.Entity("hairdressingSalon.Data.Order", b =>
                 {
+                    b.HasOne("hairdressingSalon.Data.Category", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("hairdressingSalon.Data.Client", "Client")
                         .WithMany("Orders")
                         .HasForeignKey("IdClient")
@@ -505,7 +514,7 @@ namespace hairdressingSalon.Migrations
             modelBuilder.Entity("hairdressingSalon.Data.Product", b =>
                 {
                     b.HasOne("hairdressingSalon.Data.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("IdCategory")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -516,12 +525,21 @@ namespace hairdressingSalon.Migrations
             modelBuilder.Entity("hairdressingSalon.Data.Service", b =>
                 {
                     b.HasOne("hairdressingSalon.Data.Category", "Category")
-                        .WithMany()
+                        .WithMany("Services")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("hairdressingSalon.Data.Category", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("Products");
+
+                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("hairdressingSalon.Data.Client", b =>
