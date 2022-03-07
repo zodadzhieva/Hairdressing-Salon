@@ -1,4 +1,4 @@
-﻿@model hairdressingSalon.Data.Order
+﻿@model hairdressingSalon.Models.OrderVM
 
 @{
     ViewData["Title"] = "Create";
@@ -14,11 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IdClient" class="control-label"></label>
-                <select asp-for="IdClient" class ="form-control" asp-items="ViewBag.IdClient"></select>
+                <select asp-for="IdClient" class ="form-control" asp-items="@Model.Client"></select>
             </div>
             <div class="form-group">
                 <label asp-for="IdProduct" class="control-label"></label>
-                <select asp-for="IdProduct" class ="form-control" asp-items="ViewBag.IdProduct"></select>
+                <select asp-for="IdProduct" class ="form-control" asp-items="@Model.Product"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
