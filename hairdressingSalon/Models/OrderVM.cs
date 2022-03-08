@@ -20,6 +20,7 @@ namespace hairdressingSalon.Models
         
         [Required(ErrorMessage = "This field is required")]
         public int Quantity { get; set; }
+
        
 
     

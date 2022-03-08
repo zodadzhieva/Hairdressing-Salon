@@ -311,7 +311,6 @@ C:\Users\1914\Desktop\DI\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcorea
 C:\Users\1914\Desktop\DI\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\Razor\Views\Services\Index.cshtml.g.cs
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\hairdressingSalon.StaticWebAssets.xml
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\hairdressingSalon.exe
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\hairdressingSalon.deps.json
@@ -366,7 +365,6 @@ C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\SQLitePCLRaw.batteries_v2.dll
@@ -382,7 +380,6 @@ C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
@@ -449,7 +446,6 @@ C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\alpine-x64\native\libe_sqlite3.so
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\linux-arm\native\libe_sqlite3.so
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\linux-arm64\native\libe_sqlite3.so
@@ -463,11 +459,8 @@ C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.csprojAssemblyReference.cache
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\staticwebassets\hairdressingSalon.StaticWebAssets.Manifest.cache
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\staticwebassets\hairdressingSalon.StaticWebAssets.xml
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.RazorAssemblyInfo.cache
@@ -529,3 +522,7 @@ C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.pdb
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.csproj.CoreCompileInputs.cache
+C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\scopedcss\bundle\hairdressingSalon.styles.css
+C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\netcoreapp3.1\hairdressingSalon.genruntimeconfig.cache
