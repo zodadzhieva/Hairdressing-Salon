@@ -17,7 +17,7 @@ namespace hairdressingSalon.Data
         public string Manufacture { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
-        public int Data { get; set; }
+        public DateTime DateOfEntryy { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
     }

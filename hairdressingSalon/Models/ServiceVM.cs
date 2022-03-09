@@ -19,11 +19,15 @@ namespace hairdressingSalon.Models
 
         [Required(ErrorMessage = "This field is required")]
         public string Description { get; set; }
+      
         [Required(ErrorMessage = "This field is required")]
         public string Photo { get; set; }
+       
         [Required(ErrorMessage = "This field is required")]
         public double Price { get; set; }
-        [Required(ErrorMessage = "This field is required")]
-        public int Data { get; set; }
+       
+        [DataType(DataType.Date)]
+        [Display(Name = "Дата на вписване:")]
+        public DateTime DateOfEntry { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace hairdressingSalon.Data
         [ForeignKey("Service")]
         public int IdService { get; set; }
         public Service Service { get; set; }
+       
         public DateTime DateApropr { get; set; }
        
         [ForeignKey("HairDresser")]

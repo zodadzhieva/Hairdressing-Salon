@@ -355,8 +355,8 @@ namespace hairdressingSalon.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Data")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DateOfEntryy")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -390,8 +390,8 @@ namespace hairdressingSalon.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Data")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DateOfEntry")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");

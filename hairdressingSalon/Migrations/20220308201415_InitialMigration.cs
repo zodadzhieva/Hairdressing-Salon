@@ -208,7 +208,7 @@ namespace hairdressingSalon.Migrations
                     Manufacture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    Data = table.Column<int>(type: "int", nullable: false)
+                    DateOfEntryy = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -232,7 +232,7 @@ namespace hairdressingSalon.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    Data = table.Column<int>(type: "int", nullable: false)
+                    DateOfEntry = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

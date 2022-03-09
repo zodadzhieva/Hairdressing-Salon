@@ -19,7 +19,8 @@ namespace hairdressingSalon.Data
         public string Photo { get; set; }
 
         public double Price { get; set; }
-        public int Data { get; set; }
+        public DateTime DateOfEntry { get; set; }
+
         public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }

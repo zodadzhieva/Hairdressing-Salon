@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using hairdressingSalon.Data;
+using hairdressingSalon.Models;
 
 namespace hairdressingSalon.Controllers
 {
@@ -84,9 +85,28 @@ namespace hairdressingSalon.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdClient"] = new SelectList(_context.Clients, "Id", "Id", order.IdClient);
-            ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
-            return View(order);
+            OrderVM model = new OrderVM();
+            model.Id = order.Id;
+            model.IdProduct = order.IdProduct;
+            model.IdClient = order.IdClient;
+            model.Quantity = order.Quantity;
+
+            model.Product = _context.Products.Select(pr => new SelectListItem
+            {
+                Value = pr.Id.ToString(),
+                Text = pr.Name,
+                Selected = pr.Id == model.IdProduct }).ToList();
+        
+            //model.Client = _context.Clients.Select(client => new SelectListItem
+            //{
+            //    Value = client.Id.ToString(),
+            //    Text = client.Name,
+            //    Selected = client.Id == model.IdClient }).ToList();
+
+           return View(model);  
+            //ViewData["IdClient"] = new SelectList(_context.Clients, "Id", "Id", order.IdClient);
+            //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
+           
         }
 
         // POST: Orders/Edit/5
@@ -94,23 +114,36 @@ namespace hairdressingSalon.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdClient,IdProduct,Quantity")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdClient,IdProduct,Quantity")] OrderVM order)
         {
             if (id != order.Id)
+            {
+                return NotFound();
+            }
+            Order modelToDB = await _context.Orders.FindAsync(id);
+            if (modelToDB == null)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
+                return View(modelToDB);
+             }
+
+            modelToDB.Id = order.Id;  
+            modelToDB.IdProduct = order.IdProduct;
+            modelToDB.IdClient = order.IdClient;
+            modelToDB.Quantity= order.Quantity;
+
+            try
                 {
-                    _context.Update(order);
+                    _context.Update(modelToDB);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OrderExists(order.Id))
+                    if (!OrderExists(modelToDB.Id))
                     {
                         return NotFound();
                     }
@@ -119,12 +152,13 @@ namespace hairdressingSalon.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", new { id = id });
             }
-            ViewData["IdClient"] = new SelectList(_context.Clients, "Id", "Id", order.IdClient);
-            ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
-            return View(order);
-        }
+
+            //ViewData["IdClient"] = new SelectList(_context.Clients, "Id", "Id", order.IdClient);
+            //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
+            //return View(order);
+        
 
         // GET: Orders/Delete/5
         public async Task<IActionResult> Delete(int? id)
