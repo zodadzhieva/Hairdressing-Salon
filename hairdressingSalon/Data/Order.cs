@@ -11,7 +11,7 @@ namespace hairdressingSalon.Data
         public int Id { get; set; }
        
         [ForeignKey("Client")]
-        public int IdClient { get; set; }
+        public string IdClient { get; set; }
         public Client Client { get; set; }
         
         [ForeignKey("Product")]

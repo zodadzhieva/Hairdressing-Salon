@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "D3RcHYHY27gyCO3WMILTjiK1nblSCLN3Uq3SuWnmNIqnC0QVzD2gIh4JFu2zhY9nMEa9AqmpDgMxlMBK8JaFBg==",
+  "dgSpecHash": "8I7+mSHHP6nH/rkfzHRXUu43d0sE0Ib9/m249cx8RS7PTUTa0dWlYjKFc0K2QTsJ8nb0ALyFc4HVM4diHgfWBA==",
   "success": true,
   "projectFilePath": "C:\\Users\\1914\\Desktop\\Hairdressing-Salon\\hairdressingSalon\\hairdressingSalon.csproj",
   "expectedPackageFiles": [
@@ -33,8 +33,8 @@
     "C:\\Users\\1914\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.14\\microsoft.entityframeworkcore.relational.5.0.14.nupkg.sha512",
     "C:\\Users\\1914\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\5.0.14\\microsoft.entityframeworkcore.sqlite.5.0.14.nupkg.sha512",
     "C:\\Users\\1914\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\5.0.14\\microsoft.entityframeworkcore.sqlite.core.5.0.14.nupkg.sha512",
-    "C:\\Users\\1914\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.14\\microsoft.entityframeworkcore.sqlserver.5.0.14.nupkg.sha512",
-    "C:\\Users\\1914\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.14\\microsoft.entityframeworkcore.tools.5.0.14.nupkg.sha512",
+    "C:\\Users\\1914\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.12\\microsoft.entityframeworkcore.sqlserver.5.0.12.nupkg.sha512",
+    "C:\\Users\\1914\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.12\\microsoft.entityframeworkcore.tools.5.0.12.nupkg.sha512",
     "C:\\Users\\1914\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\1914\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\1914\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
