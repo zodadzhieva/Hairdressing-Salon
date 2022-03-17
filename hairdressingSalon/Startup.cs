@@ -31,7 +31,8 @@ namespace hairdressingSalon
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<Client>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<HairdresserContext>().AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<HairdresserContext>()
+                .AddDefaultTokenProviders();
            
             services.AddControllersWithViews();
             services.AddRazorPages();

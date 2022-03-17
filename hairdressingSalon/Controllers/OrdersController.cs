@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using hairdressingSalon.Data;
 using Microsoft.AspNetCore.Identity;
+using hairdressingSalon.Models;
 
 namespace hairdressingSalon.Controllers
 {
@@ -14,6 +15,9 @@ namespace hairdressingSalon.Controllers
     {
         private readonly HairdresserContext _context;
         private readonly UserManager<Client>_userManager;
+      
+       
+
 
         public OrdersController(HairdresserContext context,UserManager<Client>userManager)
         {
@@ -24,8 +28,10 @@ namespace hairdressingSalon.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var hairdresserContext = _context.Orders.Include(o => o.Client).Include(o => o.Product);
-            return View(await hairdresserContext.ToListAsync());
+            var HairdresserContext = _context.Orders
+               .Include(o => o.Product);
+              
+            return View(await HairdresserContext.ToListAsync());
         }
 
         // GET: Orders/Details/5
@@ -51,8 +57,16 @@ namespace hairdressingSalon.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id");
+            OrderVM model = new OrderVM();
+            model.Product = _context.Products.Select(pr => new SelectListItem
+            {
+                Value = pr.Id.ToString(),
+                Text = pr.Name,
+                Selected = pr.Id == model.IdProduct }).ToList();
+
+        
+            //ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Name");
+            //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "FullName");
             return View();
         }
 
@@ -61,7 +75,7 @@ namespace hairdressingSalon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdClient,IdProduct,Quantity")] Order order)
+        public async Task<IActionResult> Create(int? id,[Bind("Id,IdClient,IdProduct,Quantity")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -69,9 +83,17 @@ namespace hairdressingSalon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id", order.IdClient);
-            ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
-            return View(order);
+        
+        OrderVM model = new OrderVM();
+        model.Product = _context.Products.Select(pr => new SelectListItem
+            {
+                Value = pr.Id.ToString(),
+                Text = pr.Name,
+                Selected = pr.Id == model.IdProduct }).ToList();
+   
+//ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id", order.IdClient);
+//ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
+return View(order);
         }
 
         // GET: Orders/Edit/5
@@ -87,8 +109,22 @@ namespace hairdressingSalon.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id", order.IdClient);
-            ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
+            OrderVM model = new OrderVM();
+            model.Id = order.Id;
+            model.IdClient = order.IdClient;
+            model.IdProduct = order.IdProduct;   
+            model.Quantity = order.Quantity;
+
+            model.Product = _context.Products.Select(pr => new SelectListItem
+            {
+                Value = pr.Id.ToString(),
+                Text = pr.Name,
+                Selected = pr.Id == model.IdProduct
+            }).ToList();
+
+          
+            //ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id", order.IdClient);
+            //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
             return View(order);
         }
 
@@ -97,23 +133,38 @@ namespace hairdressingSalon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdClient,IdProduct,Quantity")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdClient,IdProduct,Quantity")] OrderVM order)
         {
             if (id != order.Id)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            Order modelToDB = await _context.Orders.FindAsync(id);
+            if (modelToDB == null)
             {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+
+                return View(modelToDB);
+            }
+
+                modelToDB.Id= order.Id;
+                modelToDB.IdClient = order.IdClient;
+                modelToDB.IdProduct = order.IdProduct;
+                modelToDB.Quantity = order.Quantity;
+
+            
                 try
                 {
-                    _context.Update(order);
+                    _context.Update(modelToDB);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OrderExists(order.Id))
+                    if (!OrderExists(modelToDB.Id))
                     {
                         return NotFound();
                     }
@@ -122,12 +173,12 @@ namespace hairdressingSalon.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id = id });
             }
-            ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id", order.IdClient);
-            ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
-            return View(order);
-        }
+            //ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id", order.IdClient);
+            //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
+           
+        
 
         // GET: Orders/Delete/5
         public async Task<IActionResult> Delete(int? id)
