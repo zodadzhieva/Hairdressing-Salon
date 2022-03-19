@@ -64,7 +64,7 @@ namespace hairdressingSalon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", service.CategoryId);
+            ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
             return View(service);
         }
 
@@ -81,7 +81,7 @@ namespace hairdressingSalon.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", service.CategoryId);
+            ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
             return View(service);
         }
 
@@ -117,7 +117,7 @@ namespace hairdressingSalon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", service.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
             return View(service);
         }
 

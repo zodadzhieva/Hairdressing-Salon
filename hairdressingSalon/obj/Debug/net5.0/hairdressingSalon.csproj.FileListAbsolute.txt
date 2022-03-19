@@ -212,7 +212,6 @@ C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\hair
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\ref\hairdressingSalon.dll
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\hairdressingSalon.pdb
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\hairdressingSalon.genruntimeconfig.cache
-C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\hairdressingSalon.csproj.AssemblyReference.cache
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs

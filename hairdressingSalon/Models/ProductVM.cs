@@ -15,8 +15,8 @@ namespace hairdressingSalon.Models
         public string Name { get; set; }
 
         public int IdCategory { get; set; }
-        [Required(ErrorMessage = "This field is required")]
-        public List<SelectListItem> Category { get; set; }
+       //Required(ErrorMessage = "This field is required")]
+        public List<SelectListItem> Categories { get; set; }
        
         [Required(ErrorMessage = "This field is required")]
         public string Manufacture { get; set; }
@@ -25,8 +25,9 @@ namespace hairdressingSalon.Models
         public string Description { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
+        [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
         [Display(Name = "Дата на вписване:")]
         public DateTime DateOfEntryy { get; set; }

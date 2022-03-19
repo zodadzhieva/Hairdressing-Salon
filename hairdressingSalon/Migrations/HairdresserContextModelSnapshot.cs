@@ -200,9 +200,6 @@ namespace hairdressingSalon.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ServiceId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
@@ -310,9 +307,6 @@ namespace hairdressingSalon.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("IdClient")
                         .HasColumnType("nvarchar(450)");
 
@@ -323,8 +317,6 @@ namespace hairdressingSalon.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("IdClient");
 
@@ -339,6 +331,9 @@ namespace hairdressingSalon.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfEntryy")
                         .HasColumnType("datetime2");
@@ -355,12 +350,12 @@ namespace hairdressingSalon.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdCategory");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -372,7 +367,7 @@ namespace hairdressingSalon.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfEntry")
@@ -380,6 +375,9 @@ namespace hairdressingSalon.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdCategory")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -473,10 +471,6 @@ namespace hairdressingSalon.Migrations
 
             modelBuilder.Entity("hairdressingSalon.Data.Order", b =>
                 {
-                    b.HasOne("hairdressingSalon.Data.Category", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("hairdressingSalon.Data.Client", "Client")
                         .WithMany("Orders")
                         .HasForeignKey("IdClient");
@@ -496,9 +490,7 @@ namespace hairdressingSalon.Migrations
                 {
                     b.HasOne("hairdressingSalon.Data.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("IdCategory")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
@@ -507,17 +499,13 @@ namespace hairdressingSalon.Migrations
                 {
                     b.HasOne("hairdressingSalon.Data.Category", "Category")
                         .WithMany("Services")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
 
             modelBuilder.Entity("hairdressingSalon.Data.Category", b =>
                 {
-                    b.Navigation("Orders");
-
                     b.Navigation("Products");
 
                     b.Navigation("Services");

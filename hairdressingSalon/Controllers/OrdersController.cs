@@ -16,9 +16,7 @@ namespace hairdressingSalon.Controllers
         private readonly HairdresserContext _context;
         private readonly UserManager<Client>_userManager;
       
-       
-
-
+      
         public OrdersController(HairdresserContext context,UserManager<Client>userManager)
         {
             _context = context;
@@ -67,7 +65,7 @@ namespace hairdressingSalon.Controllers
         
             //ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Name");
             //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "FullName");
-            return View();
+            return View(model);
         }
 
         // POST: Orders/Create
@@ -93,7 +91,7 @@ namespace hairdressingSalon.Controllers
    
 //ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id", order.IdClient);
 //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
-return View(order);
+return View(model);
         }
 
         // GET: Orders/Edit/5

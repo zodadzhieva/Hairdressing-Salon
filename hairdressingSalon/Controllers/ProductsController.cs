@@ -46,10 +46,10 @@ namespace hairdressingSalon.Controllers
             {
                 Id = product.Id,
                 IdCategory = product.IdCategory,
-                Manufacture=product.Manufacture,
+                Manufacture = product.Manufacture,
                 Description = product.Description,
                 Price = product.Price,
-                DateOfEntryy=product.DateOfEntryy
+                DateOfEntryy = product.DateOfEntryy
             };
 
 
@@ -60,8 +60,14 @@ namespace hairdressingSalon.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            //ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id");
-            return View();
+            ProductVM model = new ProductVM();
+            model.Categories = _context.Categories.Select(cat => new SelectListItem
+            {
+                Value = cat.Id.ToString(),
+                Text = cat.Name,
+                Selected = cat.Id == model.IdCategory
+            }).ToList();
+            return View(model); ;
         }
 
         // POST: Products/Create
@@ -69,18 +75,32 @@ namespace hairdressingSalon.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id,[Bind("Id,Name,IdCategory,Manufacture,Description,Price,Data")] Product product)
+        public async Task<IActionResult> Create(int id, [Bind("Id,Name,IdCategory,Manufacture,Description,Price,Data")] ProductVM product)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                Product modelToDB = new Product(); //модела за данни
+                                                   // modelToDB.Id = product.Id;
+                modelToDB.Name = product.Name;
+                modelToDB.IdCategory = product.IdCategory;
+                modelToDB.Manufacture = product.Manufacture;
+                modelToDB.Description = product.Description;
+                modelToDB.Price = product.Price;
+                modelToDB.DateOfEntryy = DateTime.Now; //product.DateOfEntryy;
+
+                _context.Add(modelToDB);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", product.IdCategory);
-            return View(product);
+            ProductVM model = new ProductVM();
+            model.Categories = _context.Categories.Select(cat => new SelectListItem
+            {
+                Value = cat.Id.ToString(),
+                Text = cat.Name,
+                Selected = cat.Id == model.IdCategory
+            }).ToList();
+            return View(model);
         }
-
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -99,7 +119,7 @@ namespace hairdressingSalon.Controllers
             {
                 Id = product.Id,
                 IdCategory = product.IdCategory,
-                Manufacture=product.Manufacture,
+                Manufacture = product.Manufacture,
                 Description = product.Description,
                 Price = product.Price,
                 DateOfEntryy = product.DateOfEntryy
@@ -114,46 +134,54 @@ namespace hairdressingSalon.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdCategory,Manufactute,Description,Price,DateOfEntryy")] ProductVM product)
-        { 
-        Product modelToDB = await _context.Products.FindAsync(id);
+        {
+            Product modelToDB = await _context.Products.FindAsync(id);
             if (modelToDB == null)
             {
                 return NotFound();
-    }
+            }
             if (!ModelState.IsValid)
             {
                 //презареждаме страницата
                 return View(modelToDB);
-               }
 
-            modelToDB.IdCategory = product.IdCategory;
-            modelToDB.Manufacture = product.Manufacture;
-            modelToDB.Price = product.Price;
-            modelToDB.Description = product.Description;
-            modelToDB.DateOfEntryy = product.DateOfEntryy;
+            }
 
-                try
+            //modelToDB.IdCategory = product.IdCategory;
+            //modelToDB.Manufacture = product.Manufacture;
+            //modelToDB.Price = product.Price;
+            //modelToDB.Description = product.Description;
+            //modelToDB.DateOfEntryy = product.DateOfEntryy;
+
+
+            //_context.Add(modelToDB);
+            //await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
+
+
+
+            try
+            {
+                _context.Update(modelToDB);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(modelToDB.Id))
                 {
-                    _context.Update(modelToDB);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!ProductExists(modelToDB.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
+            }
             return RedirectToAction("Details", new { id = id });
         }
 
 
         // GET: Products/Delete/5
-        
+
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             if (id == null)
