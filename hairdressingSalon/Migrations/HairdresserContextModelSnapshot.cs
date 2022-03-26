@@ -332,6 +332,9 @@ namespace hairdressingSalon.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
@@ -488,11 +491,9 @@ namespace hairdressingSalon.Migrations
 
             modelBuilder.Entity("hairdressingSalon.Data.Product", b =>
                 {
-                    b.HasOne("hairdressingSalon.Data.Category", "Category")
+                    b.HasOne("hairdressingSalon.Data.Category", null)
                         .WithMany("Products")
                         .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("hairdressingSalon.Data.Service", b =>

@@ -191,11 +191,12 @@ namespace hairdressingSalon.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdCategory = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    Category = table.Column<int>(type: "int", nullable: false),
                     Manufacture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    DateOfEntryy = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateOfEntryy = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

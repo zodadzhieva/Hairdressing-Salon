@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using hairdressingSalon.Data;
 using Microsoft.AspNetCore.Identity;
 using hairdressingSalon.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace hairdressingSalon.Controllers
 {
@@ -53,14 +54,16 @@ namespace hairdressingSalon.Controllers
         }
 
         // GET: Orders/Create
+        [Authorize(Roles="User,Admin")]
         public IActionResult Create()
         {
             OrderVM model = new OrderVM();
-            model.Product = _context.Products.Select(pr => new SelectListItem
+            model.IdClient = _userManager.GetUserId(User);
+            model.Product = _context.Products.Select(x => new SelectListItem
             {
-                Value = pr.Id.ToString(),
-                Text = pr.Name,
-                Selected = pr.Id == model.IdProduct }).ToList();
+                Value = x.Id.ToString(),
+                Text = x.Name,
+                Selected = x.Id == model.IdProduct }).ToList();
 
         
             //ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Name");

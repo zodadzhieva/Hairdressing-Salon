@@ -28,6 +28,6 @@ namespace hairdressingSalon.Data
        // public virtual DbSet<Client> Clients{ get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public IEnumerable Clients { get; internal set; }
+       // public IEnumerable Clients { get; internal set; }
     }
 }

@@ -11,10 +11,10 @@ namespace hairdressingSalon.Models
     {
         public int Id { get; set; }
 
-       
-        public int IdClient { get; set; }
         [Required(ErrorMessage = "This field is required")]
-        public List<SelectListItem> Client { get; set; }
+        public int IdClient { get; set; }
+       
+       
 
         public int IdService { get; set; }
         [Required(ErrorMessage = "This field is required")]

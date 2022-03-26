@@ -13,7 +13,6 @@ namespace hairdressingSalon.Data
         public string Name { get; set; }
        
         public ICollection<Service> Services { get; set; }
-       // public ICollection<Order> Orders { get; set; }
         public ICollection<Product> Products { get; set; }
     }
 }

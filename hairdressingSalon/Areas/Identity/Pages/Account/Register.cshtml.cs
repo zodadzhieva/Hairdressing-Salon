@@ -46,10 +46,24 @@ namespace hairdressingSalon.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [Required]
+            [Display(Name = "Name")]
+            public string Name { get; set; }
+
+            [Required]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+
+            [Required]
+            [Display(Name = "UserName")]
+            public string UserName { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -61,6 +75,9 @@ namespace hairdressingSalon.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -75,12 +92,21 @@ namespace hairdressingSalon.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Client { UserName = Input.Email, Email = Input.Email };
+                var user = new Client 
+                {
+                    Name = Input.Name,
+                    LastName = Input.LastName,
+                    Email = Input.Email,
+                    UserName = Input.UserName
+
+                };            
+            
+               // var user = new Client { UserName = Input.UserName, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
+                        
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

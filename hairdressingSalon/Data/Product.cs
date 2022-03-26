@@ -15,7 +15,7 @@ namespace hairdressingSalon.Data
 
        // [ForeignKey("Category")]
         public int IdCategory { get; set; }
-        public Category Category { get; set; }
+        public CategoryType Category { get; set; }
         public string Manufacture { get; set; }
         public string Description { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
