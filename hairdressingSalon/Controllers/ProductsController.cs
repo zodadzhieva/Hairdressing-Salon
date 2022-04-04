@@ -44,15 +44,14 @@ namespace hairdressingSalon.Controllers
             }
             ProductVM model = new ProductVM
             {
-                Id = product.Id,
+               
+                Name=product.Name,
                 IdCategory = product.IdCategory,
                 Manufacture = product.Manufacture,
                 Description = product.Description,
                 Price = product.Price,
                 DateOfEntryy = product.DateOfEntryy
             };
-
-
 
             return View(model);
         }
@@ -61,12 +60,12 @@ namespace hairdressingSalon.Controllers
         public IActionResult Create()
         {
             ProductVM model = new ProductVM();
-            model.Categories = _context.Categories.Select(cat => new SelectListItem
-            {
-                Value = cat.Id.ToString(),
-                Text = cat.Name,
-                Selected = cat.Id == model.IdCategory
-            }).ToList();
+            //model.Categories = _context.Categories.Select(cat => new SelectListItem
+            //{
+            //    Value = cat.Id.ToString(),
+            //    Text = cat.Name,
+            //    Selected = cat.Id == model.IdCategory
+            //}).ToList();
             return View(model); ;
         }
 
@@ -92,6 +91,7 @@ namespace hairdressingSalon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ProductVM model = new ProductVM();
             model.Categories = _context.Categories.Select(cat => new SelectListItem
             {
@@ -118,6 +118,7 @@ namespace hairdressingSalon.Controllers
             ProductVM model = new ProductVM
             {
                 Id = product.Id,
+                Name = product.Name,
                 IdCategory = product.IdCategory,
                 Manufacture = product.Manufacture,
                 Description = product.Description,
@@ -133,7 +134,7 @@ namespace hairdressingSalon.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCategory,Manufactute,Description,Price,DateOfEntryy")] ProductVM product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,IdCategory,Manufactute,Description,Price,DateOfEntryy")] ProductVM product)
         {
             Product modelToDB = await _context.Products.FindAsync(id);
             if (modelToDB == null)
@@ -143,22 +144,16 @@ namespace hairdressingSalon.Controllers
             if (!ModelState.IsValid)
             {
                 //презареждаме страницата
-                return View(modelToDB);
+                return View(product);
 
             }
-
-            //modelToDB.IdCategory = product.IdCategory;
-            //modelToDB.Manufacture = product.Manufacture;
-            //modelToDB.Price = product.Price;
-            //modelToDB.Description = product.Description;
-            //modelToDB.DateOfEntryy = product.DateOfEntryy;
-
-
-            //_context.Add(modelToDB);
-            //await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
-
-
+            modelToDB.Id = product.Id;
+            modelToDB.Name = product.Name;
+            modelToDB.IdCategory = product.IdCategory;
+            modelToDB.Manufacture = product.Manufacture;
+            modelToDB.Description = product.Description;
+            modelToDB.Price = product.Price;
+            modelToDB.DateOfEntryy = product.DateOfEntryy;
 
             try
             {

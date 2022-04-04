@@ -219,3 +219,4 @@ C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\Razo
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\1914\Desktop\Hairdressing-Salon\hairdressingSalon\obj\Debug\net5.0\hairdressingSalon.csproj.AssemblyReference.cache

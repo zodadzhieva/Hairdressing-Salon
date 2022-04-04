@@ -11,14 +11,14 @@ namespace hairdressingSalon.Models
     {
         public int Id { get; set; }
        
-        [Required(ErrorMessage = "This field is required")]
+     
         public string Name { get; set; }
 
         public int IdCategory { get; set; }
        //Required(ErrorMessage = "This field is required")]
         public List<SelectListItem> Categories { get; set; }
        
-        [Required(ErrorMessage = "This field is required")]
+     
         public string Manufacture { get; set; }
        
         [Required(ErrorMessage = "This field is required")]

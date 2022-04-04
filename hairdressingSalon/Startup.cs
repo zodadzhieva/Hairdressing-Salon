@@ -30,7 +30,8 @@ namespace hairdressingSalon
             services.AddDbContext<HairdresserContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<Client>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<Client>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<HairdresserContext>()
                 .AddDefaultTokenProviders();
            
@@ -42,6 +43,7 @@ namespace hairdressingSalon
         [Obsolete]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDataBase().Wait();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
