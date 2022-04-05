@@ -174,7 +174,23 @@ namespace hairdressingSalon.Controllers
             return RedirectToAction("Details", new { id = id });
         }
 
+        // GET: Hairdressers/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var product = await _context.Products
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
         // GET: Products/Delete/5
 
         public async Task<IActionResult> DeleteConfirmed(int? id)
