@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hairdressingSalon.Data;
 
 namespace hairdressingSalon.Migrations
 {
     [DbContext(typeof(HairdresserContext))]
-    partial class HairdresserContextModelSnapshot : ModelSnapshot
+    [Migration("20220406104102_InitThb")]
+    partial class InitThb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

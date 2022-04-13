@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using hairdressingSalon.Data;
+using hairdressingSalon.Models;
 
 namespace hairdressingSalon.Controllers
 {
@@ -21,8 +22,10 @@ namespace hairdressingSalon.Controllers
         // GET: Services
         public async Task<IActionResult> Index()
         {
-            var hairdresserContext = _context.Services.Include(s => s.Category);
-            return View(await hairdresserContext.ToListAsync());
+            List<Service> servicesList = await _context.Services.ToListAsync();
+            return View(servicesList);
+            //var hairdresserContext = _context.Services.Include(s => s.Category);
+            //return View(await hairdresserContext.ToListAsync());
         }
 
         // GET: Services/Details/5
@@ -34,56 +37,101 @@ namespace hairdressingSalon.Controllers
             }
 
             var service = await _context.Services
-                .Include(s => s.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (service == null)
             {
                 return NotFound();
             }
+            ServiceVM model = new ServiceVM
+            {
+                Id = service.Id,
+                Name = service.Name,
+                IdCategory = service.IdCategory,
+                Description = service.Description,
+                Photo = service.Photo,
+                Price = service.Price,
+                DateOfEntry = service.DateOfEntry
 
+            };
             return View(service);
         }
 
-        // GET: Services/Create
+// GET: Services/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
-            return View();
-        }
+                Service model = new Service();
+
+                return View();
+            }
 
         // POST: Services/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,CategoryId,Description,Photo,Price,Data")] Service service)
+        public async Task<IActionResult> Create([Bind("Id,Name,IdCategory,Description,Photo,Price,Data")] Service service)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(service);
+                Service modelToDB = new Service();
+                
+                    modelToDB.Id = service.Id;
+                    modelToDB.Name = service.Name;
+                    modelToDB.IdCategory = service.IdCategory;
+                    modelToDB.Description = service.Description;
+                    modelToDB.Photo = service.Photo;
+                    modelToDB.Price = service.Price;
+                    modelToDB.DateOfEntry = service.DateOfEntry;
+
+                _context.Add(modelToDB);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
-            return View(service);
+
+            ServiceVM model = new ServiceVM();
+            model.Categories = _context.Categories.Select(categ=>new SelectListItem
+                {
+                Value = categ.Id.ToString(),
+                Text = categ.Name,
+                Selected = categ.Id == model.IdCategory
+            }).ToList();
+            return View(model);
         }
 
-        // GET: Services/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        //ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
+        //return View(service);
+    
+
+    // GET: Services/Edit/5
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if (id == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return NotFound();
+        }
 
-            var service = await _context.Services.FindAsync(id);
-            if (service == null)
+        var service = await _context.Services.FindAsync(id);
+        if (service == null)
+        {
+            return NotFound();
+        }
+
+            ServiceVM model = new ServiceVM
             {
-                return NotFound();
-            }
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
+
+                Id = service.Id,
+                Name = service.Name,
+                IdCategory = service.IdCategory,
+                Description = service.Description,
+                Photo = service.Photo,
+                Price = service.Price,
+                DateOfEntry = service.DateOfEntry
+            };
             return View(service);
         }
+        // ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
+
+
 
         // POST: Services/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -92,21 +140,34 @@ namespace hairdressingSalon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CategoryId,Description,Photo,Price,Data")] Service service)
         {
-            if (id != service.Id)
+            Service modelToDB = await _context.Services.FindAsync(id);
+            if (modelToDB == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
+                //презареждаме страницата
+                return View(service);
+
+            }
+
+            modelToDB.Id = service.Id;
+            modelToDB.Name = service.Name;
+            modelToDB.IdCategory = service.IdCategory;
+            modelToDB.Description = service.Description;
+            modelToDB.Photo = service.Photo;
+            modelToDB.Price = service.Price;
+            modelToDB.DateOfEntry = service.DateOfEntry;
+
+            try
                 {
                     _context.Update(service);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ServiceExists(service.Id))
+                    if (!ServiceExists(modelToDB.Id))
                     {
                         return NotFound();
                     }
@@ -115,11 +176,11 @@ namespace hairdressingSalon.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
-            return View(service);
+            return RedirectToAction("Details", new { id = id });
         }
+           // ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
+           // return View(service);
+        
 
         // GET: Services/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -130,9 +191,9 @@ namespace hairdressingSalon.Controllers
             }
 
             var service = await _context.Services
-                .Include(s => s.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (service == null)
+           
+        if (service == null)
             {
                 return NotFound();
             }

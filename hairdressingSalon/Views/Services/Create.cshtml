@@ -1,4 +1,4 @@
-﻿@model hairdressingSalon.Models.ProductVM
+﻿@model hairdressingSalon.Data.Service
 
 @{
     ViewData["Title"] = "Create";
@@ -19,18 +19,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdCategory" class="control-label"></label>
-                <select asp-for="IdCategory" class ="form-control" asp-items="ViewBag.IdCategory"></select>
+                <select asp-for="IdCategory" asp-items="@Html.GetEnumSelectList<hairdressingSalon.Data.CategoryType>()" class="form-control"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
-                <span asp-validation-for="Photo" class="text-danger"></span>
-            </div>*@
+           
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" class="form-control" />

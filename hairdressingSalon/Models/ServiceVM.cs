@@ -15,7 +15,7 @@ namespace hairdressingSalon.Models
 
         public int IdCategory { get; set; }
         [Required(ErrorMessage = "This field is required")]
-        public List<SelectListItem> Category { get; set; }
+        public List<SelectListItem> Categories { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
         public string Description { get; set; }

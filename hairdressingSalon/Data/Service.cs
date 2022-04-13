@@ -11,10 +11,10 @@ namespace hairdressingSalon.Data
         public int Id { get; set; }
 
         public string Name { get; set; }
-      
-       
+
+        [ForeignKey("Category")]
         public int IdCategory { get; set; }
-        public Category Category { get; set; }
+        public CategoryType Category { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
 

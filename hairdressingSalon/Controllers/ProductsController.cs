@@ -60,13 +60,7 @@ namespace hairdressingSalon.Controllers
         public IActionResult Create()
         {
             ProductVM model = new ProductVM();
-            //model.Categories = _context.Categories.Select(cat => new SelectListItem
-            //{
-            //    Value = cat.Id.ToString(),
-            //    Text = cat.Name,
-            //    Selected = cat.Id == model.IdCategory
-            //}).ToList();
-            return View(model); ;
+            return View(model); 
         }
 
         // POST: Products/Create
@@ -79,13 +73,13 @@ namespace hairdressingSalon.Controllers
             if (ModelState.IsValid)
             {
                 Product modelToDB = new Product(); //модела за данни
-                                                   // modelToDB.Id = product.Id;
+                                                  
                 modelToDB.Name = product.Name;
                 modelToDB.IdCategory = product.IdCategory;
                 modelToDB.Manufacture = product.Manufacture;
                 modelToDB.Description = product.Description;
                 modelToDB.Price = product.Price;
-                modelToDB.DateOfEntryy = DateTime.Now; //product.DateOfEntryy;
+                modelToDB.DateOfEntryy = DateTime.Now; 
 
                 _context.Add(modelToDB);
                 await _context.SaveChangesAsync();
@@ -124,9 +118,10 @@ namespace hairdressingSalon.Controllers
                 Description = product.Description,
                 Price = product.Price,
                 DateOfEntryy = product.DateOfEntryy
-            };
-            // ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", product.IdCategory);
+            }; 
             return View(model);
+            // ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", product.IdCategory);
+           
         }
 
         // POST: Products/Edit/5
@@ -147,6 +142,7 @@ namespace hairdressingSalon.Controllers
                 return View(product);
 
             }
+
             modelToDB.Id = product.Id;
             modelToDB.Name = product.Name;
             modelToDB.IdCategory = product.IdCategory;
