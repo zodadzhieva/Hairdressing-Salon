@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<hairdressingSalon.Data.Product>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
-<h1>Index</h1>
+<h1>Products</h1>
 
 <p>
-    <a asp-action="Create">Create New Product</a>
+    <a asp-action="Create">Add new product</a>
 </p>
 <table class="table">
     <thead class="blue2">
@@ -34,32 +32,50 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCategory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacture)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfEntryy)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IdCategory)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Manufacture)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateOfEntryy)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </td>
+</tr>}
     </tbody>
 </table>
+<div class="about-col4">
+    <img src="~/images/products.jpg">
+</div>
+
+<p>
+    <br />
+    All of products that we use are professional and the brand
+    that we sell is Loreal.
+    <br />
+    Loreal Professional is one of the top-notch global brands that manufactures hair care products.
+    It is one of the most popular brands and its products are extremely popular among users and manufactured for different types of hair.
+    You’ll have the most beautiful hair by using this brand product regularly.
+    <br />
+    <br />
+    The brand and its products have its reach to all corners of the world.
+    There are different products that address different hair concerns and all products work wonders on your hair.
+    Every product offers whatever nourishment, strength, softness and smoothening effect.
+</p>
