@@ -17,7 +17,6 @@ namespace hairdressingSalon.Controllers
         private readonly HairdresserContext _context;
         private readonly UserManager<Client> _userManager;
 
-
         public OrdersController(HairdresserContext context, UserManager<Client> userManager)
         {
             _context = context;
@@ -66,10 +65,6 @@ namespace hairdressingSalon.Controllers
                 Text = x.Name,
                 Selected = x.Id == model.IdProduct
             }).ToList();
-
-
-            //ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Name");
-            //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "FullName");
             return View(model);
         }
 
@@ -96,8 +91,6 @@ namespace hairdressingSalon.Controllers
                 Selected = pr.Id == model.IdProduct
             }).ToList();
 
-            //ViewData["IdClient"] = new SelectList(_context.Users, "Id", "Id", order.IdClient);
-            //ViewData["IdProduct"] = new SelectList(_context.Products, "Id", "Id", order.IdProduct);
             return View(model);
         }
 
@@ -114,6 +107,7 @@ namespace hairdressingSalon.Controllers
             {
                 return NotFound();
             }
+
             OrderVM model = new OrderVM();
             model.Id = order.Id;
             model.IdClient = order.IdClient;

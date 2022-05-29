@@ -6,19 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using hairdressingSalon.Data;
+using hairdressingSalon.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace hairdressingSalon.Controllers
 {
     public class AppointmentsController : Controller
     {
         private readonly HairdresserContext _context;
+        private readonly UserManager<Client> _userManager;
 
-        public AppointmentsController(HairdresserContext context)
+        public AppointmentsController(HairdresserContext context, UserManager<Client> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        // GET: Appointments
+          // GET: Appointments
         public async Task<IActionResult> Index()
         {
             var hairdresserContext = _context.Appointments.Include(a => a.Service);
@@ -47,19 +51,35 @@ namespace hairdressingSalon.Controllers
         // GET: Appointments/Create
         public IActionResult Create()
         {
-            ViewData["IdService"] = new SelectList(_context.Services, "Id", "Id");
-            return View();
+            AppointmentVM model = new AppointmentVM();
+            model.IdClient = _userManager.GetUserId(User);
+            model.Hairdresser =_context.Hairdressers.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+                Selected = x.Id == model.IdHairdresser
+            }).ToList();
+
+            model.Service = _context.Services.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+                Selected = x.Id == model.IdService
+            }).ToList();        
+            return View(model);
         }
 
         // POST: Appointments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,IdClient,IdService,DateApropr,IdHairDresser")] Appointment appointment)
         {
             if (ModelState.IsValid)
             {
+                //var Appointment.ToList()
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -9,6 +9,7 @@ namespace hairdressingSalon.Data
 {
     public class HairdresserContext : IdentityDbContext<Client>
        {
+
         public HairdresserContext()
         {
 
@@ -19,6 +20,7 @@ namespace hairdressingSalon.Data
         {
 
         }
+
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Order> Orders { get; set; }

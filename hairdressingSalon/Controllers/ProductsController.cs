@@ -23,9 +23,7 @@ namespace hairdressingSalon.Controllers
         public async Task<IActionResult> Index()
         {
             List<Product> productsList = await _context.Products.ToListAsync();
-            return View(productsList);
-            //var hairdresserContext = _context.Products.Include(p => p.Category);
-            //return View(await hairdresserContext.ToListAsync());
+            return View(productsList);            
         }
 
         // GET: Products/Details/5
@@ -72,7 +70,7 @@ namespace hairdressingSalon.Controllers
         {
             if (ModelState.IsValid)
             {
-                Product modelToDB = new Product(); //модела за данни
+                Product modelToDB = new Product(); 
                                                   
                 modelToDB.Name = product.Name;
                 modelToDB.IdCategory = product.IdCategory;
@@ -120,8 +118,6 @@ namespace hairdressingSalon.Controllers
                 DateOfEntryy = product.DateOfEntryy
             }; 
             return View(model);
-            // ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", product.IdCategory);
-           
         }
 
         // POST: Products/Edit/5
@@ -137,10 +133,8 @@ namespace hairdressingSalon.Controllers
                 return NotFound();
             }
             if (!ModelState.IsValid)
-            {
-                //презареждаме страницата
+            {        
                 return View(product);
-
             }
 
             modelToDB.Id = product.Id;

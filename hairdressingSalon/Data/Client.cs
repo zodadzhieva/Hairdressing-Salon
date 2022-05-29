@@ -9,11 +9,8 @@ namespace hairdressingSalon.Data
 {
     public class Client:IdentityUser
     {
-
         public string Name { get; set; }
-       
         public string LastName { get; set; }
-       
         public int Phone { get; set; }
       
         public virtual ICollection<Order> Orders { get; set; }

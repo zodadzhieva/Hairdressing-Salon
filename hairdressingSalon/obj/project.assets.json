@@ -7823,11 +7823,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\1914\\Desktop\\Hairdressing-Salon-master\\hairdressingSalon\\hairdressingSalon.csproj",
+      "projectUniqueName": "C:\\Users\\1914\\Desktop\\Hairdressing-Salon\\hairdressingSalon\\hairdressingSalon.csproj",
       "projectName": "hairdressingSalon",
-      "projectPath": "C:\\Users\\1914\\Desktop\\Hairdressing-Salon-master\\hairdressingSalon\\hairdressingSalon.csproj",
+      "projectPath": "C:\\Users\\1914\\Desktop\\Hairdressing-Salon\\hairdressingSalon\\hairdressingSalon.csproj",
       "packagesPath": "C:\\Users\\1914\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\1914\\Desktop\\Hairdressing-Salon-master\\hairdressingSalon\\obj\\",
+      "outputPath": "C:\\Users\\1914\\Desktop\\Hairdressing-Salon\\hairdressingSalon\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

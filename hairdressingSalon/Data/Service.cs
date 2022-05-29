@@ -9,7 +9,6 @@ namespace hairdressingSalon.Data
     public class Service
     {
         public int Id { get; set; }
-
         public string Name { get; set; }
 
         [ForeignKey("Category")]
@@ -17,7 +16,6 @@ namespace hairdressingSalon.Data
         public CategoryType Category { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
-
         public double Price { get; set; }
         public DateTime DateOfEntry { get; set; }
 

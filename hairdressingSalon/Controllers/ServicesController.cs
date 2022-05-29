@@ -24,8 +24,6 @@ namespace hairdressingSalon.Controllers
         {
             List<Service> servicesList = await _context.Services.ToListAsync();
             return View(servicesList);
-            //var hairdresserContext = _context.Services.Include(s => s.Category);
-            //return View(await hairdresserContext.ToListAsync());
         }
 
         // GET: Services/Details/5
@@ -56,7 +54,7 @@ namespace hairdressingSalon.Controllers
             return View(service);
         }
 
-// GET: Services/Create
+       // GET: Services/Create
         public IActionResult Create()
         {
                 Service model = new Service();
@@ -98,10 +96,6 @@ namespace hairdressingSalon.Controllers
             return View(model);
         }
 
-        //ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
-        //return View(service);
-    
-
     // GET: Services/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
@@ -129,10 +123,7 @@ namespace hairdressingSalon.Controllers
             };
             return View(service);
         }
-        // ViewData["IdCategory"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
-
-
-
+       
         // POST: Services/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -147,12 +138,10 @@ namespace hairdressingSalon.Controllers
             }
             if (!ModelState.IsValid)
             {
-                //презареждаме страницата
                 return View(service);
-
             }
 
-            modelToDB.Id = service.Id;
+            modelToDB.Id = id;
             modelToDB.Name = service.Name;
             modelToDB.IdCategory = service.IdCategory;
             modelToDB.Description = service.Description;
@@ -178,10 +167,7 @@ namespace hairdressingSalon.Controllers
                 }
             return RedirectToAction("Details", new { id = id });
         }
-           // ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", service.IdCategory);
-           // return View(service);
-        
-
+          
         // GET: Services/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

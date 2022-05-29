@@ -10,13 +10,11 @@ namespace hairdressingSalon.Models
     public class CategoryVM
     {
         public int Id { get; set; }
-
         [Required(ErrorMessage = "This field is required")]
-        public string Name { get; set; }
-        
-         [Required(ErrorMessage = "This field is required")]
-        public string ServiceId { get; set; }
        
-      
+        public string Name { get; set; }
+         [Required(ErrorMessage = "This field is required")]
+       
+        public string ServiceId { get; set; }
     }
 }

@@ -45,8 +45,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+          
             <td>
-                @Html.DisplayFor(modelItem => item.Photo)
+                
+           <img class="rounded float-sm-right" width="200" src="@item.Photo" alt="Image for @item.Photo" />
+           
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
